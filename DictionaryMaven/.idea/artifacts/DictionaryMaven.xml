@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx-preloader" name="DictionaryMaven">
+    <output-path>$PROJECT_DIR$/out/artifacts/DictionaryMaven</output-path>
+    <root id="archive" name="DictionaryMaven.jar">
+      <element id="archive" name="DictionaryMaven.jar">
+        <element id="module-output" name="DictionaryMaven" />
+      </element>
+    </root>
+  </artifact>
+</component>
