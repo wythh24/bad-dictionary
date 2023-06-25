@@ -3,7 +3,6 @@ package com.Application.Controller;
 import com.Application.Configuration.FileConfiguration;
 import com.Application.Features.FileFeature;
 import com.Application.Model.DictionaryEntity;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -66,8 +65,9 @@ public class InitialController implements Initializable {
 
     @FXML
     protected void searchWord() {
+        searchField.getText().toLowerCase().trim();
         for (var word : sourcePrivate) {
-            if (word.getWord().contains(searchField.getText())) {
+            if (word.getWord().toLowerCase().contains(searchField.getText())) {
                 wordList.getSelectionModel().select(word.getWord());
                 addToRecent(listRecent, word.getWord());
             }
