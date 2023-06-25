@@ -89,41 +89,44 @@ public class InitialController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initialDictionaryData();
         previousBtn.setDisable(true);
+        nextBtn.setDisable(true);
 
         //comboBox action
         listRecent.setOnAction(event -> {
             String value = listRecent.getValue();
             selectListItem(value);
+            buttonState();
         });
 
         //ListView action
         wordList.getSelectionModel().selectedItemProperty().addListener((ObservableList, oldValue, newValue) -> {
             if (newValue != null) {
                 addToRecent(listRecent, newValue);
-                buttonState();
+                listRecent.getSelectionModel().select(newValue);
             }
         });
         //previous button
         previousBtn.setOnAction(event -> {
 
-            int currentIndex = wordList.getSelectionModel().getSelectedIndex();
+            int currentIndex = listRecent.getSelectionModel().getSelectedIndex();
             if (currentIndex > 0) {
-                int previousIndex = findPreviousSelectedIndex(currentIndex);
+                int previousIndex = findSelectedIndex(currentIndex, false);
+
                 if (previousIndex >= 0) {
-                    wordList.getSelectionModel().select(previousIndex);
-                    wordList.scrollTo(previousIndex);
+                    listRecent.getSelectionModel().select(previousIndex);
                 }
             }
         });
         //next button
         nextBtn.setOnAction(event -> {
-            int currentIndex = wordList.getSelectionModel().getSelectedIndex();
-            int itemCount = wordList.getItems().size();
+            int currentIndex = listRecent.getSelectionModel().getSelectedIndex();
+            int itemCount = listRecent.getItems().size();
+
+            //itemCount - 1 = convert value as index
             if (currentIndex < itemCount - 1) {
-                int nextIndex = findNextSelectedIndex(currentIndex);
+                int nextIndex = findSelectedIndex(currentIndex, true);
                 if (nextIndex >= 0) {
-                    wordList.getSelectionModel().select(nextIndex);
-                    wordList.scrollTo(nextIndex);
+                    listRecent.getSelectionModel().select(nextIndex);
                 }
             }
         });
@@ -147,26 +150,17 @@ public class InitialController implements Initializable {
     }
 
     private void buttonState() {
-        int currentIndex = wordList.getSelectionModel().getSelectedIndex();
-        int countItem = wordList.getItems().size();
+        int currentIndex = listRecent.getSelectionModel().getSelectedIndex();
+        int countItem = listRecent.getItems().size();
+
         nextBtn.setDisable(currentIndex >= countItem - 1);
         previousBtn.setDisable(currentIndex <= 0);
     }
 
-    private int findNextSelectedIndex(int currentIndex) {
-        int itemCount = wordList.getItems().size();
-        for (int i = currentIndex + 1; i < itemCount; i++) {
-            if (wordList.getSelectionModel().isSelected(i)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private int findPreviousSelectedIndex(int currentIndex) {
-        for (int i = currentIndex - 1; i >= 0; i--) {
-            if (wordList.getSelectionModel().isSelected(i)) {
-                return i;
+    private int findSelectedIndex(int currentIndex, boolean toNext) {
+        for (int i = currentIndex; i >= 0; i--) {
+            if (listRecent.getSelectionModel().isSelected(i)) {
+                return !toNext ? i - 1 : i + 1;
             }
         }
         return -1;
