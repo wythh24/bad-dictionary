@@ -47,10 +47,11 @@ public class InitialController implements Initializable {
 
         String path = configuration.createSourcePath(getSourceFilePath(sourceName));
 
-        var initValue = new DictionaryEntity("Apple", "small tree ", "noun");
-        var banana = new DictionaryEntity("PineApple", "eyes tree ever", "noun");
+        var apple = new DictionaryEntity("Apple", "small tree ", "noun");
+        var banana = new DictionaryEntity("Banana", "eyes tree ever", "noun");
 
         fileFeature.addToDictionary(sourcePrivate, banana);
+        fileFeature.addToDictionary(sourcePrivate, apple);
         fileFeature.saveDictionary(sourcePrivate, path);
 
     }
@@ -90,6 +91,7 @@ public class InitialController implements Initializable {
         initialDictionaryData();
         previousBtn.setDisable(true);
         nextBtn.setDisable(true);
+
 
         //comboBox action
         listRecent.setOnAction(event -> {
@@ -173,7 +175,7 @@ public class InitialController implements Initializable {
             if (word.getWord().equalsIgnoreCase(value)) {
                 detailList.getItems().clear();
                 detailList.getItems().add(word.getWord() + " (" + word.getSubject() + ")");
-                detailList.getItems().add(word.getDefinition());
+                detailList.getItems().add(word.getDescription());
             }
         }
     }
