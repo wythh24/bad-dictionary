@@ -32,33 +32,6 @@ public class FileFeatureImp implements FileFeature {
         }
     }
 
-    @Override
-    public Serializable search(Vector<DictionaryEntity> dictionary, String searchTerm) {
-        try {
-            for (var word : dictionary) {
-                if (word.getWord().equalsIgnoreCase(searchTerm)) {
-                    return word;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (Vector<DictionaryEntity>) dictionary;
-    }
-
-    @Override
-    public void update(Vector<DictionaryEntity> dictionary, DictionaryEntity valueUpdate) {
-
-        for (var value : dictionary) {
-
-            if (value.getWord().equalsIgnoreCase(valueUpdate.getWord())) {
-                value.Word = valueUpdate.getWord() == null ? value.getWord() : valueUpdate.getWord();
-                value.Subject = valueUpdate.getSubject() == null ? value.getSubject() : valueUpdate.getSubject();
-                value.Definition = valueUpdate.getDefinition() == null ? value.getDefinition() : valueUpdate.getDefinition();
-            }
-        }
-    }
-
     public void addToDictionary(Vector<DictionaryEntity> dictionary, DictionaryEntity value) {
         if (value != null) dictionary.add(value);
     }

@@ -16,7 +16,6 @@ public interface FileFeature {
         return new DictionaryEntity();
     }
 
-    void update(Vector<DictionaryEntity> dictionary, DictionaryEntity valueUpdate);
 
     void addToDictionary(Vector<DictionaryEntity> dictionary, DictionaryEntity value);
 }

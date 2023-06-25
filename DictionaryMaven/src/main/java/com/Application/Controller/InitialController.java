@@ -34,8 +34,6 @@ public class InitialController implements Initializable {
     @FXML
     private TextField searchField;
 
-    private int currentIndex = -1;
-
     private final String sourceName = "dictionarySource";
     private Vector<DictionaryEntity> sourcePrivate = new Vector<>();
 
@@ -74,6 +72,7 @@ public class InitialController implements Initializable {
                 addToRecent(listRecent, word.getWord());
             }
         }
+        searchField.clear();
     }
 
     private Vector<DictionaryEntity> getSource() {
