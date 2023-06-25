@@ -15,7 +15,7 @@
                 <Pane prefHeight="62.0" prefWidth="924.0" style="-fx-background-color: #9d3990;">
                     <children>
                         <TextField fx:id="searchField" layoutX="6.0" layoutY="8.0" prefHeight="44.0" prefWidth="308.0"
-                                   onAction="#ReadFromCsv"
+                                   onAction="#searchWord"
                                    promptText="Search"/>
 
                         <Button layoutX="326.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0"
