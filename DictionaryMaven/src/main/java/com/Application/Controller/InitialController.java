@@ -28,6 +28,7 @@ public class InitialController implements Initializable {
     public Button previousBtn;
     @FXML
     public Button nextBtn;
+    public ListView detailList;
     private String sourceFile = null;
 
     @FXML
@@ -68,7 +69,7 @@ public class InitialController implements Initializable {
     @FXML
     protected void searchWord() {
         for (var word : sourcePrivate) {
-            if (word.getWord().equalsIgnoreCase(searchField.getText())) {
+            if (word.getWord().contains(searchField.getText())) {
                 wordList.getSelectionModel().select(word.getWord());
                 addToRecent(listRecent, word.getWord());
             }
@@ -103,6 +104,7 @@ public class InitialController implements Initializable {
             if (newValue != null) {
                 addToRecent(listRecent, newValue);
                 listRecent.getSelectionModel().select(newValue);
+                addToDetail(sourcePrivate, newValue);
             }
         });
         //previous button
@@ -114,6 +116,7 @@ public class InitialController implements Initializable {
 
                 if (previousIndex >= 0) {
                     listRecent.getSelectionModel().select(previousIndex);
+                    wordList.scrollTo(listRecent.getItems().indexOf(previousIndex));
                 }
             }
         });
@@ -164,5 +167,15 @@ public class InitialController implements Initializable {
             }
         }
         return -1;
+    }
+
+    private void addToDetail(Vector<DictionaryEntity> source, String value) {
+        for (var word : source) {
+            if (word.getWord().equalsIgnoreCase(value)) {
+                detailList.getItems().clear();
+                detailList.getItems().add(word.getWord() + " (" + word.getSubject() + ")");
+                detailList.getItems().add(word.getDefinition());
+            }
+        }
     }
 }

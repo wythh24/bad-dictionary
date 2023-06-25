@@ -4,39 +4,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="616.0" prefWidth="964.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Application.Controller.InitialController">
+<VBox alignment="CENTER" prefHeight="616.0" prefWidth="964.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Application.Controller.InitialController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <Pane prefHeight="616.0" prefWidth="964.0" style="-fx-background-color: #cbcbe3;">
+        <Pane prefHeight="616.0" prefWidth="964.0">
             <children>
-                <Pane prefHeight="62.0" prefWidth="924.0" style="-fx-background-color: #9d3990;">
+                <Pane layoutY="-17.0" prefHeight="53.0" prefWidth="924.0" style="-fx-background-color: #ababab;">
                     <children>
-                        <TextField fx:id="searchField" layoutX="6.0" layoutY="8.0" prefHeight="44.0" prefWidth="308.0"
-                                   onAction="#searchWord"
-                                   promptText="Search"/>
+                        <TextField fx:id="searchField" layoutX="6.0" layoutY="8.0" onAction="#searchWord" prefHeight="36.0" prefWidth="308.0" promptText="Search" />
 
-                        <Button fx:id="previousBtn" layoutX="326.0" layoutY="8.0" mnemonicParsing="false"
-                                prefHeight="44.0" prefWidth="80.0"
-                                text="Previous"/>
-                        <Button fx:id="nextBtn" layoutX="422.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0"
-                                prefWidth="80.0"
-                                text="Next"/>
-                        <ComboBox fx:id="listRecent" layoutX="755.0" layoutY="9.0" prefHeight="44.0" prefWidth="160.0"
-                                  promptText="Recent"/>
+                        <Button fx:id="previousBtn" layoutX="330.0" layoutY="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="80.0" text="Previous" />
+                        <Button fx:id="nextBtn" layoutX="422.0" layoutY="8.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="80.0" text="Next" />
+                        <ComboBox fx:id="listRecent" layoutX="758.0" layoutY="8.0" prefHeight="36.0" prefWidth="160.0" promptText="Recent" />
                     </children>
                 </Pane>
-                <Pane layoutY="62.0" prefHeight="516.0" prefWidth="315.0" style="-fx-background-color: blue;">
+                <Pane layoutY="35.0" prefHeight="543.0" prefWidth="315.0" style="-fx-background-color: blue;">
                     <children>
-                        <ListView fx:id="wordList" prefHeight="516.0" prefWidth="315.0"/>
+                        <ListView fx:id="wordList" prefHeight="543.0" prefWidth="315.0" />
                     </children>
                 </Pane>
-                <Pane fx:id="detailPanel" layoutX="315.0" layoutY="62.0" prefHeight="516.0" prefWidth="610.0"
-                      style="-fx-background-color: red;">
+                <Pane fx:id="detailPanel" layoutX="315.0" layoutY="35.0" prefHeight="543.0" prefWidth="608.0" style="-fx-background-color: red;">
                     <children>
-                        <ListView fx:id="detailList" prefHeight="516.0" prefWidth="610.0"/>
+                        <ListView fx:id="detailList" prefHeight="543.0" prefWidth="608.0" />
                     </children>
                 </Pane>
             </children>
