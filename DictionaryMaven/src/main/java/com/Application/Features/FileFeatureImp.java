@@ -33,7 +33,7 @@ public class FileFeatureImp implements FileFeature {
     }
 
     @Override
-    public DictionaryEntity search(Vector<DictionaryEntity> dictionary, String searchTerm) {
+    public Serializable search(Vector<DictionaryEntity> dictionary, String searchTerm) {
         try {
             for (var word : dictionary) {
                 if (word.getWord().equalsIgnoreCase(searchTerm)) {
@@ -43,7 +43,7 @@ public class FileFeatureImp implements FileFeature {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return (Vector<DictionaryEntity>) dictionary;
     }
 
     @Override

@@ -18,9 +18,11 @@
                                    onAction="#searchWord"
                                    promptText="Search"/>
 
-                        <Button layoutX="326.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0"
+                        <Button fx:id="previousBtn" layoutX="326.0" layoutY="8.0" mnemonicParsing="false"
+                                prefHeight="44.0" prefWidth="80.0"
                                 text="Previous"/>
-                        <Button layoutX="422.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0"
+                        <Button fx:id="nextBtn" layoutX="422.0" layoutY="8.0" mnemonicParsing="false" prefHeight="44.0"
+                                prefWidth="80.0"
                                 text="Next"/>
                         <ComboBox fx:id="listRecent" layoutX="755.0" layoutY="9.0" prefHeight="44.0" prefWidth="160.0"
                                   promptText="Recent"/>
