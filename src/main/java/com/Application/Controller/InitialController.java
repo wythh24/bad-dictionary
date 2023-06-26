@@ -88,6 +88,7 @@ public class InitialController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        InitialSourcePath();
         initialDictionaryData();
         previousBtn.setDisable(true);
         nextBtn.setDisable(true);
