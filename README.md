@@ -21,6 +21,7 @@ We are continuously working to enhance MyDictionary and have the following plans
 
 We value your feedback and welcome contributions to make MyDictionary even better!
 
+
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
