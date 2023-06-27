@@ -17,24 +17,25 @@ import java.util.Vector;
 
 public class InitialController implements Initializable {
 
-    private final FileConfiguration configuration;
+    //Generated variables
     @FXML
     public ListView<String> wordList;
-    private final FileFeature fileFeature;
+    @FXML
+    private TextField searchField;
+    public ListView detailList;
     @FXML
     public ComboBox<String> listRecent;
     @FXML
     public Button previousBtn;
     @FXML
     public Button nextBtn;
-    public ListView detailList;
-    private String sourceFile = null;
 
-    @FXML
-    private TextField searchField;
-
-    private final String sourceName = "dictionarySource";
+    //Initial variables
     private Vector<DictionaryEntity> sourcePrivate = new Vector<>();
+    private final FileFeature fileFeature;
+    private String sourceFile = null;
+    private final FileConfiguration configuration;
+    private final String sourceName = "dictionarySource";
 
     public InitialController(FileConfiguration configuration, FileFeature fileFeature) {
         this.configuration = configuration;
@@ -49,9 +50,9 @@ public class InitialController implements Initializable {
 
         var apple = new DictionaryEntity("Apple", "small tree ", "noun");
         var banana = new DictionaryEntity("Banana", "eyes tree ever", "noun");
+        var orange = new DictionaryEntity("Orange", "damn ma bui", "noun");
 
-        fileFeature.addToDictionary(sourcePrivate, banana);
-        fileFeature.addToDictionary(sourcePrivate, apple);
+        fileFeature.addToDictionary(sourcePrivate, orange);
         fileFeature.saveDictionary(sourcePrivate, path);
 
     }
@@ -66,9 +67,9 @@ public class InitialController implements Initializable {
 
     @FXML
     protected void searchWord() {
-        searchField.getText().toLowerCase().trim();
+        String searchTermFormat = searchField.getText().toLowerCase().trim();
         for (var word : sourcePrivate) {
-            if (word.getWord().toLowerCase().contains(searchField.getText())) {
+            if (word.getWord().toLowerCase().contains(searchTermFormat)) {
                 wordList.getSelectionModel().select(word.getWord());
                 addToRecent(listRecent, word.getWord());
             }
@@ -80,7 +81,7 @@ public class InitialController implements Initializable {
         return fileFeature.loadDictionary(getSourceFilePath(sourceName));
     }
 
-    private void initialDictionaryData() {
+    private void initialLoadDictionaryData() {
         for (var word : sourcePrivate) {
             wordList.getItems().add(word.getWord());
         }
@@ -88,11 +89,8 @@ public class InitialController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        InitialSourcePath();
-        initialDictionaryData();
-        previousBtn.setDisable(true);
-        nextBtn.setDisable(true);
-
+        initialLoadDictionaryData();
+        initStateButton(true);
 
         //comboBox action
         listRecent.setOnAction(event -> {
@@ -111,7 +109,6 @@ public class InitialController implements Initializable {
         });
         //previous button
         previousBtn.setOnAction(event -> {
-
             int currentIndex = listRecent.getSelectionModel().getSelectedIndex();
             if (currentIndex > 0) {
                 int previousIndex = findSelectedIndex(currentIndex, false);
@@ -135,6 +132,13 @@ public class InitialController implements Initializable {
                 }
             }
         });
+    }
+
+    private void initStateButton(boolean enable) {
+        if (enable) {
+            previousBtn.setDisable(true);
+            nextBtn.setDisable(true);
+        }
     }
 
     private void addToRecent(ComboBox<String> comboBox, String value) {
